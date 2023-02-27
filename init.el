@@ -18,7 +18,8 @@ indent-tabs-mode nil)
 (setq-default indent-tabs-mode nil)
 
 ;; Remove trailing whitespace on save
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+;; (removed on 2022-11-02 as this causes lots of diffs when editing third party code)
+;;(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; Look for extra packages in this directory
 (add-to-list 'load-path "~/.emacs.d/lisp/")
@@ -30,3 +31,22 @@ indent-tabs-mode nil)
 ;; Some Arduino editting support
 (setq auto-mode-alist (cons '("\\.\\(pde\\|ino\\)$" . arduino-mode) auto-mode-alist))
 (autoload 'arduino-mode "arduino-mode" "Arduino editing mode." t)
+
+;; markdown-mode package
+;; M-x package-install RET markdown-mode RET
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/"))
+(package-initialize)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages (quote (markdown-mode))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
