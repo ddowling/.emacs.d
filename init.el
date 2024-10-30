@@ -1,10 +1,23 @@
+;; Get rid of the startup message
+(setq inhibit-startup-message t)
+
+;; Shows parenthesis 
+(show-paren-mode 1)
+
 ;; dpd Coding style
 (setq-default c-default-style "bsd"
 c-basic-offset 4
 tab-width 8
 indent-tabs-mode nil)
 
-;;; Follow compilation output
+;; switch to Linux coding style
+(defun linux-style ()
+  "Setup for editting Linux formatted code"
+  (interactive)
+  (c-set-style "linux")
+  (setq indent-tabs-mode t))
+        
+;; Follow compilation output
 (setq compilation-scroll-output "first-error")
 (global-set-key (kbd "<f4>") 'next-error)
 (global-set-key (kbd "<S-f4>") 'previous-error)
@@ -14,7 +27,7 @@ indent-tabs-mode nil)
 ;; Start the server so we can use emacsclient
 (server-start)
 
-;; Don't use tabs
+;; Don't use tabs by default unless the mode changes this. AKA "linux-style"
 (setq-default indent-tabs-mode nil)
 
 ;; Remove trailing whitespace on save
